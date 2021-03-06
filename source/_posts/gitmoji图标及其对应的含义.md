@@ -1,7 +1,7 @@
 ---
 title: gitmoji图标及其对应的含义
-top_img: /img/hbs.png
-cover: /img/hbs.png
+top_img: /img/git.jpg
+cover: /img/git.jpg
 categories:
   - 学习笔记
   - Git
