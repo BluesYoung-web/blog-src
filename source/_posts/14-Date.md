@@ -1,0 +1,133 @@
+---
+title: 14-Date
+top_img: /img/hbs.png
+cover: /img/hbs.png
+categories:
+  - 学习笔记
+  - 红宝书
+  - 第05章——基本引用类型
+tags:
+  - 红宝书第四版
+  - JavaScript
+date: 2020-12-28 17:27:33
+---
+
+- 将日期保存为自协调世界时（`UTC`，`Universal Time Coordinated`）时间 1970 年 1 月 1 日午夜（零时）至今所经过的**毫秒数**
+- 可以精确表示 1970 年 1 月 1 日之前及之后 285 616 年的日期
+
+## `new Date(any)`
+
+- 不传任何参数，返回保存当前日期和时间的对象(`Fri Nov 20 2020 14:03:10 GMT+0800 (中国标准时间)`)
+- 要基于其他日期和时间创建日期对象，必须传入其毫秒表示(时间戳)
+- 如果传入字符串，则会在后台自动调用`Date.parse()`
+- 如果传入数值，则会在后台自动调用`Date.UTC()`，**此时创建的为本地时间，不会有 8 小时的时间差**
+
+## `Date.parse(str)`
+
+- 接收一个表示日期的字符串参数，尝试将其转换为对应的时间戳(13位)
+- 支持的日期格式：
+  - “月/日/年”，如`"5/23/2019"`
+  - “月名 日, 年”，如`"May 23, 2019"`
+  - “周几 月名 日 年 时:分:秒 时区”，如`"Tue May 23 2019 00:00:00 GMT+0800"`
+  - ISO 8601 扩展格式`“YYYY-MM-DDTHH:mm:ss.sssZ”`，如` 2019-05-23T00:00:00`（只适用于 兼容 `ES5 `的实现）
+- 如果传入的字符串不是上述的格式，则该方法会返回 `NaN`
+
+## `Date.UTC(year, month - 1, day, h, m, s, ms)`
+
+- 返回对应日期的时间戳，年月必传，日默认1，其余默认0
+- 北京时间为东八区，会在 `UTC `时间的基础上 +8 小时
+
+## `Date.now()`
+
+- 返回当前时间戳
+
+## 继承的方法
+
+### `toLocaleString()`
+
+- 返回与浏览器运行的本地环境一致的日期和时间
+- 格式中通常包含针对时间的上午/下午，但不包括时区信息
+- 例如：`"2020/11/20 下午3:19:00"`
+
+### `toString()`
+
+- 通常返回带时区信息的时间，时间格式也是 24 小时制
+- 例如：`"Fri Nov 20 2020 15:20:40 GMT+0800 (中国标准时间)"`
+
+### `valueOf()`
+
+- 返回时间戳
+
+## 格式化方法
+
+### `toDateString()`
+
+- 显示日期中的周几、月、日、年（格式特定于实现）
+- `"Fri Nov 20 2020"`
+
+### `toTimeString()`
+
+- 显示日期中的时、分、秒和时区（格式特定于实现）
+- `"15:26:47 GMT+0800 (中国标准时间)"`
+
+### `toLocaleDateString()`
+
+- 显示日期中的周几、月、日、年（格式特定于实现和地区）
+- `"2020/11/20"`
+
+### `toLocaleTimeString()`
+
+- 显示日期中的时、分、秒（格式特定于实现和地区）
+- `"下午3:28:44"`
+
+### `toUTCString()`
+
+- 显示完整的 `UTC `日期（格式特定于实现）
+- `"Fri, 20 Nov 2020 07:29:39 GMT"`
+
+### `toGMTString()`
+
+- 结果同 `UTC`
+- 仅作为向后兼容，不推荐使用
+
+### `toISOString()/toJSON()`
+
+- 显示 `ISO `标准的日期
+- `"2020-11-20T07:33:55.983Z"`
+
+## 日期/时间组件方法
+
+| 方法                   | 说明                                |
+| :--------------------- | :---------------------------------- |
+| `getTime()`            | 返回毫秒数同`valueOf()`             |
+| `setTime()`            | 以毫秒数设置日期，全部改变          |
+| `getFullYear()`        | 获取4位数年份                       |
+| `getUTCFullYear()`     | 获取`UTC`日期的4位年份              |
+| `setFullYear()`        | 设置4位年份                         |
+| `setUTCFullYear()`     | 设置`UTC`日期4位年份                |
+| `getMonth()`           | 获取月份，0开始                     |
+| `getUTCMonth()`        | ---                                 |
+| `setMonth()`           | ---                                 |
+| `setUTCMonth()`        | ---                                 |
+| `getDate()`            | 获取天数                            |
+| `getUTCDate()`         | ---                                 |
+| `setDate()`            | ---                                 |
+| `setUTCDate()`         | ---                                 |
+| `getDay()`             | 获取星期几，0星期天                 |
+| `getHours()`           | 获取小时数0                         |
+| `getUTCHours()`        | ---                                 |
+| `setHours()`           | ---                                 |
+| `setUTCHours()`        | ---                                 |
+| `getMinutes()`         | ---                                 |
+| `getUTCMinutes()`      | ---                                 |
+| `setMinutes()`         | ---                                 |
+| `setUTCMinutes()`      | ---                                 |
+| `getSeconds()`         | ---                                 |
+| `getUTCSeconds()`      | ---                                 |
+| `setSeconds()`         | ---                                 |
+| `setUTCSeconds()`      | ---                                 |
+| `getMilliseconds()`    | ---                                 |
+| `getUTCMilliseconds()` | ---                                 |
+| `setMilliseconds()`    | ---                                 |
+| `setUTCMilliseconds()` | ---                                 |
+| `getTimezoneOffset()`  | 返回本地时间与`UTC`时间相差的分钟数 |
