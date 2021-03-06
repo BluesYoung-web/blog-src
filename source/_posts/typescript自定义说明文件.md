@@ -24,6 +24,5 @@ export interface Form {
 };
 import { Form } from '***';
 
-let form: Form = { username: '张三疯', password: '123456' }；
+let form: Form = { username: '张三疯', password: '123456' };
 ```
-
