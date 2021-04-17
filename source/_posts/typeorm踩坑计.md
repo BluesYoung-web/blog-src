@@ -54,12 +54,39 @@ RepositoryNotFoundError: No repository for "User" was found. Looks like this...
 ]
 ```
 
-## 未使用的 Controller
+## 莫名其妙的错误
 
-- 因为 controller 目录下写了一个多余的 controller
+- 本质上好像是实体路径引入的问题
 
 ```bash
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'; ^ SyntaxEr...
+```
+
+### 解决
+
+- 删掉默认的配置，将配置写入 ts 文件作为模块暴露
+- 实体路径书写的时候使用 `resolve(__dirname, 'src/**/*{.ts,.js})` 进行拼接
+
+```typescript
+import { resolve } from 'path';
+
+export default {
+  CONF_HTTP_PORT: 1443,
+  CONF_WS_PORT: 9527,
+  CONF_ORM: {
+    type: 'mysql',
+    host: 'localhost',
+    port: 3306,
+    username: 'root',
+    password: 'root',
+    database: 'orm_chat_demo',
+    synchronize: true,
+    logging: false,
+    entities: [resolve(__dirname, 'src/entity/**/*{.ts,.js}')],
+    migrations: [resolve(__dirname, 'src/migration/**/*{.ts,.js}')],
+    subscribers: [resolve(__dirname, 'src/subscriber/**/*{.ts,.js}')]
+ }
+}
 ```
 
 ## 动态批量导入路由及配置相应的 Controller
@@ -154,10 +181,14 @@ export default createApp;
 // 项目入口文件
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
+import conf from './conf';
 
 (async () => {
+  // 引入数据库配置
+  const orm_conf = conf.CONF_ORM;
   // 连接数据库，如果没有表则建表
-  await createConnection();
+  // 一定要加 catch ！！！
+  await createConnection(orm_conf as any).catch((error) => console.error(error));
   // 必须在数据库连接建立成功之后动态导入
   const { createApp } = await require('./src/server');
   createApp();
