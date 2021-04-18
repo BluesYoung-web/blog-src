@@ -33,11 +33,11 @@ sudo nano /etc/samba/smb.conf
 # 将系统用户添加为 Samba 用户
 sudo smbpasswd -a pi    #输入两次密码
 # 启动 Samba 服务
-sudo /etc/init.d/smbd start
+sudo service smbd start
 # 关闭 Samba 服务
-sudo /etc/init.d/smbd stop
+sudo service smbd stop
 # 重启(修改配置文件之后)
-sudo /etc/init.d/smbd restart
+sudo service smbd restart
 ```
 
 ## 挂载移动硬盘
