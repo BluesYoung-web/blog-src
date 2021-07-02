@@ -1,5 +1,5 @@
 ---
-title: typeorm踩坑计
+title: typeorm踩坑计01
 categories: 遇到的问题及解决方案
 date: 2021-04-08 16:14:09
 tags: [Node, TypeORM]
