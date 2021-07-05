@@ -46,7 +46,7 @@ export default defineComponent({
 	<hello-world :msg="msg" @click="sayHello" />
 </template>
 <script setup>
-import { ref, defineProps, defineEmit, useContext } from 'vue';
+import { ref, defineProps, defineEmits } from 'vue';
 // 组件引入自动注册
 import HelloWorld from '/src/components/HelloWorld/index.vue';
 
@@ -56,8 +56,7 @@ console.log(res);
 
 // 变量自动暴露
 const props = defineProps({ msg: { type: String, default: '你好' } });
-const emit = defineEmit(['hello']);
-const { slots, attrs } = useContext();
+const emit = defineEmits(['hello']);
 const sayHello = () => {
   alert('hello');
   emit('hello');
