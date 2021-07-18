@@ -79,5 +79,5 @@
 // ---------------------------------------------------------------------------------------
 (() => {
   var xiaokang = new xkTool("https://bluseyoung-web.gitee.io/blog/img/goldenmeili.png", true);
-  xiaokang.meting("3778678", "netease", "playlist");
+  xiaokang.meting("3231649721", "netease", "playlist");
 })();
