@@ -49,7 +49,7 @@ server {
      server_name www.bluesyoung-web.com;
      listen 80;
      location /wss {
-         proxy_pass http://172.0.1.3:9527/;      
+         proxy_pass http://172.0.1.3:9527/;
          proxy_set_header Host $host;
          proxy_set_header X-Real-IP $remote_addr;
          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
