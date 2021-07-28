@@ -502,17 +502,31 @@ nvm_reset() {
 } # this ensures the entire script is downloaded #
 ```
 
+## 安装最新版的 git
+
+```bash
+# 前置条件，安装 add-apt-repository
+sudo apt-get install python-software-properties
+sudo apt-get install software-properties-common
+sudo apt-get update
+# add-apt-repository 如果存在则可以跳过上面的安装步骤
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+```
+
 ## 安装 deb 包
 
 ```bash
 sudo dpkg -i 包名称
 ```
 
+
 ## 安装 `.tar.gz` 包
 
 ```bash
 # 解压
-tar xvf *.tar.gz
+tar -xvf *.tar.gz
 # 复制到常用的软件目录
 cp -ar 解压之后的目录名 ~/软件
 # 转到软件目录
