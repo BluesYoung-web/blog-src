@@ -14,7 +14,22 @@ date: 2021-06-06 20:52:48
 - 给树莓派安装 clash
 - 将其配置成科学上网的代理服务器
 
-## 安装
+## 推荐安装(`ShellClash`)
+
+- [Git hub](https://github.com/juewuy/ShellClash/blob/master/README_CN.md)
+
+```bash
+# jsdelivrCDN源
+export url='https://cdn.jsdelivr.net/gh/juewuy/ShellClash@master' && sh -c "$(curl -kfsSl $url/install.sh)" && source /etc/profile &> /dev/null
+# 读取环境变量
+source ~/.bashrc &> /dev/null
+# 直接运行
+clash
+# 配置文件存放位置(非root用户)
+# /home/young/.local/share/clash/config.yaml
+```
+
+## 安装(不推荐)
 
 - 首先[下载](https://github.com/Dreamacro/clash/releases)树莓派对应的 clash 版本(`clash-linux-armv7`)
 
