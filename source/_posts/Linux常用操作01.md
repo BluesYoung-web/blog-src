@@ -537,3 +537,17 @@ sudo ln -s ~/软件/目录名/文件名 /usr/local/bin/文件名
 文件名
 ```
 
+## 添加铜豌豆常用软件源
+
+```bash
+# 添加软件源
+sudo apt-add-repository 'deb https://apt.atzlinux.com/atzlinux buster main contrib non-free'
+# 解决证书报错
+wget -O public.key https://www.atzlinux.com/atzlinux/download/public.key
+sudo apt-key add public.key
+# 更新
+sudo apt-get update
+# 安装 钉钉
+sudo apt-get install dingtalk-electron
+```
+
