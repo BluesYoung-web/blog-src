@@ -4,10 +4,10 @@ top_img: /img/hbs.png
 cover: /img/hbs.png
 categories:
   - 学习笔记
-  - 红宝书
+  - JavaScript高级程序设计
   - 第25章——客户端存储
 tags:
-  - 红宝书第四版
+  - JavaScript高级程序设计第四版
   - JavaScript
 date: 2021-02-06 14:40:35
 ---

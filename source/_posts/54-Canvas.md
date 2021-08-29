@@ -4,10 +4,10 @@ top_img: /img/hbs.png
 cover: /img/hbs.png
 categories:
   - 学习笔记
-  - 红宝书
+  - JavaScript高级程序设计
   - 第18章——动画与Canvas图形
 tags:
-  - 红宝书第四版
+  - JavaScript高级程序设计第四版
   - JavaScript
 date: 2021-01-25 09:46:23
 ---

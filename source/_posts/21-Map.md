@@ -4,10 +4,10 @@ top_img: /img/hbs.png
 cover: /img/hbs.png
 categories:
   - 学习笔记
-  - 红宝书
+  - JavaScript高级程序设计
   - 第06章——集合引用类型
 tags:
-  - 红宝书第四版
+  - JavaScript高级程序设计第四版
   - JavaScript
 date: 2021-01-04 16:21:55
 ---
