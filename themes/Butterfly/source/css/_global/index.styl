@@ -19,7 +19,7 @@
   --btn-hover-color: $button-hover-color
   --btn-color: $button-color
   --btn-bg: $button-bg
-  --text-bg-hover: $text-bg-hover
+  --text-bg-hover: rgba($text-bg-hover, .7)
   --light-grey: $light-grey
   --white: $white
   --text-highlight-color: $text-highlight-color
@@ -27,6 +27,8 @@
   --blockquote-bg: $blockquote-background-color
   --reward-pop: $reward-pop-up-bg
   --toc-link-color: $toc-link-color
+  --card-box-shadow: 0 3px 8px 6px rgba(7, 17, 27, .05)
+  --card-hover-box-shadow: 0 3px 8px 6px rgba(7, 17, 27, .09)
 
 html
   height: 100%
@@ -157,8 +159,8 @@ if $site-name-font
   #site-title,
   #site-subtitle,
   #site-name,
-  #aside_content .author-info__name,
-  #aside_content .author-info__description
+  #aside-content .author-info__name,
+  #aside-content .author-info__description
     font-family: $site-name-font
 
 .is-center
@@ -197,12 +199,18 @@ if $site-name-font
       transform: scaleX(1)
 
 img
-  max-width: 100%
-  transition: all .2s
-
   &[src=''],
   &:not([src])
     opacity: 0
+
+// lazyload blur
+if hexo-config('lazyload.enable') && hexo-config('lazyload.blur') && !hexo-config('lazyload.placeholder')
+  img
+    &[data-lazy-src]:not(.loaded)
+      filter: blur(10px) brightness(1)
+
+    &[data-lazy-src].error
+      filter: none
 
 .img-alt
   margin: -.5rem 0 .5rem

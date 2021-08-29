@@ -115,4 +115,4 @@ theme: Butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: https://gitee.com/BluseYoung-web/blog.git
+  repo: https://gitee.com/BluesYoung-web/blog.git

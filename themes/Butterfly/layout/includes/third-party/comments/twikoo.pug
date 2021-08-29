@@ -2,15 +2,17 @@ script.
   (()=>{
     const $countDom = document.getElementById('twikoo-count')
     const init = () => {
-      twikoo.init({
-        envId: '!{theme.twikoo}',
-        el: '#twikoo-wrap'
-      })
+      twikoo.init(Object.assign({
+        el: '#twikoo-wrap',
+        envId: '!{theme.twikoo.envId}',
+        region: '!{theme.twikoo.region}'
+      }, !{JSON.stringify(theme.twikoo.option)}))
     }
 
     const getCount = () => {
       twikoo.getCommentsCount({
-        envId: '!{theme.twikoo}',
+        envId: '!{theme.twikoo.envId}',
+        region: '!{theme.twikoo.region}',
         urls: [window.location.pathname],
         includeReply: false
       }).then(function (res) {
