@@ -25,6 +25,8 @@ wsl --install
 ```bash
 # 打开安装好的 Ubuntu
 wsl
+# 查看所有已安装的 shell
+cat /etc/shells
 # 安装 zsh
 sudo apt-get install zsh
 # 安装 oh-my-zsh
@@ -44,7 +46,12 @@ omz update
 # 下载 powerlevel10k 主题
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 # 启用
+### 启用之前务必安装并使用 MesloLGS NF 字体！！！
+# 设置字体(elementary os)，不设置字体无法达到最佳效果
+# gsettings set org.gnome.desktop.interface monospace-font-name 'MesloLGS NF 10'
 omz theme set powerlevel10k/powerlevel10k
+# 重新配置主题表现
+p10k configure
 ```
 
 ## 实用第三方插件安装
