@@ -16,7 +16,7 @@ menu:
   #   Movie: /movies/ || fas fa-video
   # Link: /link/ || fas fa-link
   # About: /about/ || fas fa-heart
-  关于我: /about/ || fas fa-heart
+  拥抱开源: /about/ || fas fa-heart
   主页: / || fas fa-home
   归档: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
@@ -47,8 +47,8 @@ copy:
 # formal:
 #   icon: link || the description
 social:
-  fab fa-github: https://github.com/BluesYoung-web || Github
-  fas fa-envelope: mailto:15171255945@163.com || Email
+  fab fa-github: https://gitee.com/BluesYoung-web || Gitee
+  fas fa-envelope: mailto:bluesyoung_web@163.com || Email
 
 # search (搜索)
 # algolia:
