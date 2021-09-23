@@ -137,9 +137,9 @@ interface User {
 type optional = Partial<User>
 /*
 type optional = {
-    name?: string | undefined;
-    age?: number | undefined;
-    department?: string | undefined;
+    name?: string;
+    age?: number;
+    department?: string;
 }
 */
 ```
@@ -340,5 +340,17 @@ type A = Parameters<() =>void>; // []
 type B = Parameters<typeof Array.isArray>; // [any]
 type C = Parameters<typeof parseInt>; // [string, (number | undefined)?]
 type D = Parameters<typeof Math.max>; // number[]
+```
+
+## `ConstructorParameters`
+
+- 获取类的**构造函数**的参数类型所对应的元组
+
+```typescript
+type ConstructorParameters<T extends abstract new (...args: any) => any> = T extends abstract new (...args: infer P) => any ? P : never;
+
+type A = ConstructorParameters<ErrorConstructor>; // [(string | undefined)?]
+type B = ConstructorParameters<FunctionConstructor>; // string[]
+type C = ConstructorParameters<RegExpConstructor>; // [string | RegExp, (string | undefined)?]
 ```
 
