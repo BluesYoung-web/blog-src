@@ -446,7 +446,7 @@ type Responder = {
 type RequireAtLeastOne<
     ObjectType,
     KeysType extends keyof ObjectType = keyof ObjectType,
-> = KeysType extends unknown ? Responder & {[K in KeysType]-?: ObjectType[K]}: never;// 你的实现代码
+> = KeysType extends unknown ? ObjectType & {[K in KeysType]-?: ObjectType[K]}: never;
 
 type T0 = RequireAtLeastOne<Responder, 'text' | 'json'>;
 // (Responder & { text: () => string }) | (Responder & { json: () => string })
@@ -542,7 +542,7 @@ type Head<T extends any[]> = T extends [infer H, ...infer R] ? H : never;
 // 获取数组(元组)除首元素之外的数组(元组)
 type Tail<T extends any[]> = T extends [infer H, ...infer R] ? R : [];
 // 头部入栈
-type Shift<T extends any[], E> = [E, ...T];
+type Unshift<T extends any[], E> = [E, ...T];
 
 type Reverse<
   T extends Array<any>,
@@ -553,7 +553,7 @@ type Reverse<
     // 递归结束，返回翻转后的目标数组(元组)
     ? R
     // 不为 never 则递归将源数组(元组)里面的元素转移到目标数组(元组)
-    : Reverse<Tail<T>, Shift<R, Head<T>>>;
+    : Reverse<Tail<T>, Unshift<R, Head<T>>>;
 
 type R0 = Reverse<[]>; // []
 type R1 = Reverse<[1, 2, 3]>; // [3, 2, 1]
