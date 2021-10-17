@@ -8,6 +8,7 @@ toc_number: true
 ## 后台管理系统
 
 - [仓库地址](https://gitee.com/BluesYoung-web/admin-vue3-element3-vite2)
+- [在线预览(真实请求，后端为树莓派内网穿透，可能不在线)](http://frp.104300.xyz:15151/)
 - [在线预览(基于Mock，无真实请求)](https://bluesyoung-web.gitee.io/admin-vue3-element3-vite2/#/)
 
 - `vue3 + TypeScript + Vite2 + ElementPlus`
@@ -33,6 +34,7 @@ toc_number: true
 ## 社交聊天 APP
 
 - [仓库地址](https://gitee.com/BluesYoung-web/young-chat)
+- [在线预览(真实请求，后端为树莓派内网穿透，可能不在线)](http://frp.104300.xyz:15151/chat/#/pages/login/index)
 - `uni-app + uview`
 -  通过 websocket 上传文件
 -  动态(朋友圈)
