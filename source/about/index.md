@@ -41,6 +41,14 @@ toc_number: true
 -  通讯录(好友机制)
 -  单聊、群聊
 
+![登录](/img/登录.png)
+![登录](/img/我的.png)
+![登录](/img/好友申请.png)
+![登录](/img/好友列表.png)
+![登录](/img/消息列表.png)
+![登录](/img/聊天.png)
+
+
 ## 社交聊天 APP 配套后端程序
 
 - [仓库地址](https://gitee.com/BluesYoung-web/young-chat-server)
