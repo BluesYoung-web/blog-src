@@ -125,11 +125,11 @@ WeixinJSBridge.invoke(
 );
 ```
 
-  - **注意点：**
+- **注意点：**
 
-    - **前后端参数的不同——驼峰**
-    - **时间戳必须为字符串，秒级，后端产生的时间戳**
-    - **`package` 的值为 `prepay_id=*`**
+  - **前后端参数的不同——驼峰**
+  - **时间戳必须为字符串，秒级，后端产生的时间戳**
+  - **`package` 的值为 `prepay_id=*`**
 
 ## 微信内置网页调用 SDK 功能
 
@@ -169,9 +169,101 @@ wx.config({
 });
 ```
 
-  - **注意点：**
+- **注意点：**
 
-    - **后端生成签名的时候需要前端当前的 url 除了 hash 部分**
-    - **前后端的域名必须一模一样**
-    - **前端域名的查询参数必须合法**
-    - **后端参数小写，前端参数驼峰**
+  - **后端生成签名的时候需要前端当前的 url 除了 hash 部分**
+  - **前后端的 url 必须一模一样**
+  - **前端域名的查询参数必须合法**(我之前就碰到过参数之不合法导致的签名错误)
+  - **后端参数小写，前端参数驼峰**
+
+### `wx-open-launch-app`
+
+- 提供**微信直接唤起 APP** 能力的开放标签
+- **注意点：**
+  - **要给其设置一个具有宽高的父级元素，否则可能无法显示**
+  - **插槽不得使用 `<template>`，会报错**
+  - **插槽内部无法使用元素动态属性**
+  - **忽略 Vue 的警告** ` Vue.config.ignoredElements = ['wx-open-launch-app'];`
+  - **ios 可以正常唤起，安卓只能热启动(运行在后台时可以切过去，需要手动在 `onReq()` 中设置需要打开的界面)**
+
+```html
+<template>
+    <!-- 微信唤端按钮 -->
+    <div class="wx-open">
+      <wx-open-launch-app
+        id="launch-btn"
+        :appid="OPEN_APP_ID"
+        :extinfo="extinfo"
+        @click="wxOpen"
+      >
+        <script type="text/wxtag-template">
+          <style>
+            .wx-btn {
+              width: 100%;
+            }
+          </style>
+          <img class="wx-btn" alt="打开 APP" src="https://www.test.com/a.png" />
+        </script>
+      </wx-open-launch-app>
+    </div>
+</template>
+<script>
+export default {
+    async mounted() {
+          // eslint-disable-next-line
+          wx.config({
+            debug: process.env.VUE_APP_CONSOLE, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印
+            appId: process.env.VUE_APP_WX_APPID, // 必填，公众号的唯一标识
+            timestamp: conf.timestamp + '', // 必填，生成签名的时间戳
+            nonceStr: conf.noncestr, // 必填，生成签名的随机串
+            signature: conf.signature,// 必填，签名
+            jsApiList: [], // 必填，需要使用的JS接口列表
+            openTagList: ['wx-open-launch-app'], // 可选，需要使用的开放标签列表，例如
+          });
+          // eslint-disable-next-line
+          wx.error((err) => {
+            console.error(err);
+          });
+        this.$nextTick(() => {
+            const wx_btn = document.getElementById('launch-btn');
+            wx_btn.addEventListener('launch', function (e) {
+              console.log('success', e);
+            });
+            wx_btn.addEventListener('error', (e) => {
+              console.log('fail', e.detail);
+              // 启动失败，跳转下载页
+              this.jumpdown();
+            });
+        });
+    }
+}
+</script>
+<style>
+html,body,a,div,img {
+  margin: 0;
+  padding: 0;
+}
+
+html,body {
+  height: 100%;
+}
+    
+.wx-open {
+  position: absolute;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+#launch-btn {
+  display: block;
+  position: absolute;
+  top: 68%;
+  left: 50%;
+  width: 180px;
+  margin-left: -90px;
+  text-align: center;
+}
+</style>
+```
+
